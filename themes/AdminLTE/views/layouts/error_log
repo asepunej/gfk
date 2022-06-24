@@ -1,0 +1,2 @@
+[15-Oct-2014 13:04:25 UTC] PHP Fatal error:  Using $this when not in object context in /home/ambapsi/public_html/simangga/themes/abound/views/layouts/indikator.php on line 2
+[15-Oct-2014 13:04:39 UTC] PHP Fatal error:  Using $this when not in object context in /home/ambapsi/public_html/simangga/themes/abound/views/layouts/column1.php on line 2

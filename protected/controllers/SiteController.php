@@ -5,7 +5,7 @@ class SiteController extends Controller
 	/**
 	 * Declares class-based actions.
 	 */
-    public $layout='//layouts/column2';
+    public $layout='//layouts/main';
 
     public function actions()
 	{
@@ -122,4 +122,5 @@ class SiteController extends Controller
 
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
 }

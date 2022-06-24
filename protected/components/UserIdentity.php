@@ -17,36 +17,51 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-//        $db='db';
-        $dbcmd = Yii::app()->db->createCommand("select * from referensi.fnlogin_user('$this->username','$this->password')")->queryAll();
-        Yii::app()->session['id_user'] =$dbcmd[0]['id_user'];
-        Yii::app()->session['nama_lengkap'] =$dbcmd[0]['nama_lengkap'];
-        Yii::app()->session['nip'] =$dbcmd[0]['nip'];
-        Yii::app()->session['jabatan'] =$dbcmd[0]['jabatan'];
-        Yii::app()->session['id_level_user'] =$dbcmd[0]['id_level_user'];
-        Yii::app()->session['id_skpd'] =$dbcmd[0]['id_skpd'];
-        Yii::app()->session['level_user'] =$dbcmd[0]['level_user'];
-        Yii::app()->session['nama_skpd'] =$dbcmd[0]['nama_skpd'];
-        Yii::app()->session['level_unit'] =$dbcmd[0]['level_unit'];
 
-      // Yii::app()->session['tahun_anggaran']=$_POST['ddltahun'];
+        $dbcmd = Yii::app()->db->createCommand("
+                    SELECT
+                    t1.id_user,
+                    t1.username,
+                    t1.pasword,
+                    t1.id_pegawai,
+                    t1.kd_jabatan,
+                    t1.kd_klinik,
+                    t2.jabatan,
+                    t3.nama,
+                    t4.klinik
+                    FROM support.user t1
+                    LEFT JOIN support.jabatan t2 on t1.kd_jabatan=t2.kd_jabatan
+                    LEFT JOIN public.pegawai t3 on t1.id_pegawai=t3.id_pegawai
+                    LEFT JOIN support.klinik t4 on t1.kd_klinik=t4.kd_klinik      
+            Where t1.username='$this->username'
+            and t1.pasword='$this->password' ;
+        ")->queryAll();
 
+       
+        
+      
+        if(isset($dbcmd[0]['id_user'])){
+                Yii::app()->session['statuslogin'] =true;
 
-//$config=dirname(__FILE__).'/protected/config/main.php';
-//        $config=dirname(__FILE__).'/protected/config/main.php';
-//        yii::app()->$config;
+                Yii::app()->session['id_user'] =$dbcmd[0]['id_user'];
+                Yii::app()->session['username'] =$dbcmd[0]['username']; 
+                Yii::app()->session['id_pegawai'] =$dbcmd[0]['id_pegawai'];
+                Yii::app()->session['kd_jabatan'] =$dbcmd[0]['kd_jabatan'];
+                Yii::app()->session['kd_klinik'] =$dbcmd[0]['kd_klinik'];
 
-
-//require_once($yii);
-//Yii::createWebApplication($config)->run();
-//        yii::createComponent($config)->run();
-
-
-
-        if(isset($dbcmd[0]['id_user']))
-            Yii::app()->session['statuslogin'] =true;
-        else
+                Yii::app()->session['nama'] =$dbcmd[0]['nama']; 
+                Yii::app()->session['jabatan'] =$dbcmd[0]['jabatan'];      
+                Yii::app()->session['klinik'] =$dbcmd[0]['klinik'];
+               
+            }
+            
+        else{
             Yii::app()->session['statuslogin'] =false;
+             $this->redirect(array("Site/Logout"));
+          
+        }
+            
+
 
         $this->errorCode=self::ERROR_NONE;
         return !$this->errorCode;
@@ -54,35 +69,6 @@ class UserIdentity extends CUserIdentity
         Yii::app()->session['statuslogin'] =true;
         $this->errorCode=self::ERROR_NONE;
         return !$this->errorCode;
-
-
-//
-//
-//        $users=array(
-//            // username => password
-//            'demo'=>'demo',
-//            'admin'=>'admin',
-//        );
-//
-//
-//		if(!isset($users[$this->username]))
-//			$this->errorCode=self::ERROR_USERNAME_INVALID;
-//		elseif($users[$this->username]!==$this->password)
-//			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-//		else
-//			$this->errorCode=self::ERROR_NONE;
-//		return !$this->errorCode;
-
-//        if (!Yii::app()->session['statuslogin'])
-//            $this->errorCode=self::ERROR_PASSWORD_INVALID;
-//        else
-//            $this->errorCode=self::ERROR_NONE;
-//        return !$this->errorCode;
-//
-//        if(isset($dbcmd[0]['Nama']))
-//            Yii::app()->session['statuslogin'] =true;
-//        else
-//            Yii::app()->session['statuslogin'] =false;
 
 
         $this->errorCode=self::ERROR_NONE;

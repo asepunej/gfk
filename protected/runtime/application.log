@@ -5564,3 +5564,132 @@ Stack trace:
 #17 {main}
 REQUEST_URI=/index.php?r=site/login
 ---
+2022/06/24 08:05:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] could not connect to server: Connection timed out (0x0000274C/10060)
+	Is the server running on host "unej.net" (99.83.248.67) and accepting
+	TCP/IP connections on port 5432?' in D:\xampp\htdocs\simrs\framework\db\CDbConnection.php:381
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 D:\xampp\htdocs\simrs\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 D:\xampp\htdocs\simrs\framework\base\CModule.php(387): CDbConnection->init()
+#3 D:\xampp\htdocs\simrs\framework\base\CModule.php(103): CModule->getComponent('db')
+#4 D:\xampp\htdocs\simrs\protected\models\ReferensiModel.php(13): CModule->__get('db')
+#5 D:\xampp\htdocs\simrs\themes\abound\views\site\login.php(56): ReferensiModel->getdaftartahunall()
+#6 D:\xampp\htdocs\simrs\framework\web\CBaseController.php(126): require('D:\\xampp\\htdocs...')
+#7 D:\xampp\htdocs\simrs\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\xampp\\htdocs...', Array, true)
+#8 D:\xampp\htdocs\simrs\framework\web\CController.php(869): CBaseController->renderFile('D:\\xampp\\htdocs...', Array, true)
+#9 D:\xampp\htdocs\simrs\framework\web\CController.php(782): CController->renderPartial('login', Array, true)
+#10 D:\xampp\htdocs\simrs\protected\controllers\SiteController.php(112): CController->render('login', Array)
+#11 D:\xampp\htdocs\simrs\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#12 D:\xampp\htdocs\simrs\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 D:\xampp\htdocs\simrs\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#14 D:\xampp\htdocs\simrs\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(282): CController->run('login')
+#16 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#17 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#18 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#19 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://simrs.com/index.php
+---
+2022/06/24 09:34:05 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[3F000]: Invalid schema name: 7 ERROR:  schema "referensi" does not exist
+LINE 1: select * from referensi.fnlogin_user('admin','admin!')
+                      ^. The SQL statement executed was: select * from referensi.fnlogin_user('admin','admin!').
+in D:\xampp\htdocs\simrs\protected\components\UserIdentity.php (21)
+in D:\xampp\htdocs\simrs\protected\models\LoginForm.php (52)
+in D:\xampp\htdocs\simrs\protected\controllers\SiteController.php (103)
+2022/06/24 09:34:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[3F000]: Invalid schema name: 7 ERROR:  schema "referensi" does not exist
+LINE 1: select * from referensi.fnlogin_user('admin','admin!')
+                      ^. The SQL statement executed was: select * from referensi.fnlogin_user('admin','admin!')' in D:\xampp\htdocs\simrs\framework\db\CDbCommand.php:541
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\db\CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 D:\xampp\htdocs\simrs\protected\components\UserIdentity.php(21): CDbCommand->queryAll()
+#2 D:\xampp\htdocs\simrs\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#3 D:\xampp\htdocs\simrs\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#4 D:\xampp\htdocs\simrs\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#5 D:\xampp\htdocs\simrs\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#6 D:\xampp\htdocs\simrs\protected\controllers\SiteController.php(103): CModel->validate()
+#7 D:\xampp\htdocs\simrs\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#8 D:\xampp\htdocs\simrs\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 D:\xampp\htdocs\simrs\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 D:\xampp\htdocs\simrs\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(282): CController->run('login')
+#12 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#13 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php?r=site/login
+HTTP_REFERER=http://simrs.com/index.php?r=site/login
+---
+2022/06/24 09:36:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Dashboard/Dashboard".' in D:\xampp\htdocs\simrs\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Dashboard/Dashb...')
+#1 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=Dashboard/Dashboard
+HTTP_REFERER=http://simrs.com/index.php?r=site/login
+---
+2022/06/24 09:36:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Dashboard/Dashboard".' in D:\xampp\htdocs\simrs\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Dashboard/Dashb...')
+#1 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=Dashboard/Dashboard
+---
+2022/06/24 09:36:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Dashboard/Dashboard".' in D:\xampp\htdocs\simrs\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Dashboard/Dashb...')
+#1 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=Dashboard/Dashboard
+---
+2022/06/24 09:36:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Dashboard/Dashboard".' in D:\xampp\htdocs\simrs\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Dashboard/Dashb...')
+#1 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=Dashboard/Dashboard
+HTTP_REFERER=http://simrs.com/index.php?r=site/login
+---
+2022/06/24 09:36:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Dashboard/Level".' in D:\xampp\htdocs\simrs\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Dashboard/Level')
+#1 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=Dashboard/Level&id_user=353
+HTTP_REFERER=http://simrs.com/index.php?r=Dashboard/Dashboard
+---
+2022/06/24 09:36:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Poliklinik/DaftarRegistrasi".' in D:\xampp\htdocs\simrs\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Poliklinik/Daft...')
+#1 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=Poliklinik/DaftarRegistrasi
+HTTP_REFERER=http://simrs.com/index.php?r=Dashboard/Level&id_user=353
+---
+2022/06/24 09:37:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "Dashboard/Level".' in D:\xampp\htdocs\simrs\framework\web\CWebApplication.php:286
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Dashboard/Level')
+#1 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=Dashboard/Level&id_user=353
+HTTP_REFERER=http://simrs.com/index.php?r=Poliklinik/DaftarRegistrasi
+---
+2022/06/24 09:39:09 [error] [exception.CException] exception 'CException' with message 'Alias "application.extensions.format.format" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\simrs\framework\YiiBase.php:316
+Stack trace:
+#0 D:\xampp\htdocs\simrs\framework\YiiBase.php(196): YiiBase::import('application.ext...', true)
+#1 D:\xampp\htdocs\simrs\protected\controllers\RegistrasiController.php(10): YiiBase::createComponent('application.ext...')
+#2 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(281): RegistrasiController->init()
+#3 D:\xampp\htdocs\simrs\framework\web\CWebApplication.php(141): CWebApplication->runController('Registrasi/Daft...')
+#4 D:\xampp\htdocs\simrs\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\simrs\index.php(21): CApplication->run()
+#6 {main}
+REQUEST_URI=/index.php?r=Registrasi/DaftarRegistrasi
+HTTP_REFERER=http://simrs.com/index.php?r=Dashboard/Dashboard
+---

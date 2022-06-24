@@ -7,39 +7,11 @@
 // CWebApplication properties can be configured here.
 //date_default_timezone_set('Asia/Calcutta');
 //
-//if($_SESSION["db"]=='2017')
-//    $db='fkgunejn_gfk2017';
-//else
-//    $db='fkgunejn_gfk2018';
-
-//if($_SESSION["db"]=='2017')
-//    $db='gfk2017';
-//else
-//    $db='gfk2016';
-
-switch ($_SESSION["db"])
-{
-    case '2016' :
-        $db='unejnet_gfk2016';
-        break;
-    case '2017' :
-        $db='unejnet_gfk2017';
-        break;
-    case '2018' :
-        $db='unejnet_gfk2018';
-        break;
-    case '2019' :
-        $db='fkgunejn_gfk2019';
-        break;
-    default :
-        $db='fkgunejn_gfk2019';
-}
-
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-   	'name'=>'Sistem Informasi Persediaan Barang',
-        'theme'=>'abound',
+   	'name'=>'Sistem Informasi Pengadaan Barang dan Jasa',
+        'theme'=>'AdminLTE',
         'timeZone' => 'Asia/Jakarta',
 
 	// preloading 'log' component
@@ -111,26 +83,30 @@ return array(
 //            'class'            => 'CDbConnection'
 //        ),
 
+       
+
+		// 'db'=>array(
+        //     'connectionString' => 'pgsql:host=10.10.3.113;port=5434;dbname=simkeu_0627',
+		// 	'emulatePrepare' => true,
+        //     'username' => 'simkeu',
+        //     'password' => 'SimkeuUN#J',
+        //     'charset' => 'utf8',
+		// 	'enableProfiling' =>true,
+		// 	'enableParamLogging' => true,
+        //     'class' => 'CDbConnection'
+        // ),
+
+		
 
 
-        'db'=>array(
-            'connectionString' => 'pgsql:host=unej.net;dbname='.$db,
-            'username' => 'fkgunejn',
-            'password' => 'bifEb45X35',
-            //'charset' => 'utf8',
-            'class'            => 'CDbConnection'
-        ),
 
-
-
-//
-//        'db'=>array(
-//            'connectionString' => 'pgsql:host=localhost;dbname='.$db,
-//            'username' => 'admin',
-//            'password' => 'admin!',
-//            //'charset' => 'utf8',
-//            'class'            => 'CDbConnection'
-//        ),
+       'db'=>array(
+           'connectionString' => 'pgsql:host=localhost;dbname=simrs',
+           'username' => 'postgres',
+           'password' => 'as10se76',
+           //'charset' => 'utf8',
+           'class'            => 'CDbConnection'
+       ),
 
 
 
@@ -162,6 +138,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
+        'appkey' => 'RFVtTTlaS0pkT3lmbnk3djNaZEo4WEszYUtKN3hSaEU=',
 		'adminEmail'=>'webmaster@example.com',
 	),
 );
